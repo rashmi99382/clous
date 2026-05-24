@@ -8333,6 +8333,9 @@ function friendlyAwsError(error) {
   if (text.includes("Requested resource not found") || text.includes("ResourceNotFoundException")) {
     return "DynamoDB table not found. Check that UserMediaUploads exists in us-east-1 with userId and createdAt keys.";
   }
+  if (text.includes("Query condition missed key schema element") || text.includes("Missing the key")) {
+    return "DynamoDB table key problem: UserMediaUploads must use partition key userId and sort key createdAt. Recreate or fix the table key schema.";
+  }
   return text;
 }
 function value(id) {
