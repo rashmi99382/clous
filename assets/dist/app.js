@@ -1,11 +1,14 @@
-import { getCurrentUser } from "aws-amplify/auth";
-import { hasAwsConfig } from "./aws.js";
+import {
+  getCurrentUser,
+  hasAwsConfig
+} from "./chunk-LNG3ZXQZ.js";
+import "./chunk-NYHZIGVN.js";
 
+// assets/js/app.js
 async function updateHomeNav() {
   if (!hasAwsConfig()) {
     return;
   }
-
   try {
     await getCurrentUser();
     const nav = document.querySelector(".nav-links");
@@ -13,8 +16,6 @@ async function updateHomeNav() {
       nav.innerHTML = '<a class="button small" href="dashboard.html">Open dashboard</a>';
     }
   } catch {
-    // Visitor is not logged in yet.
   }
 }
-
 updateHomeNav();

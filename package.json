@@ -1,0 +1,25 @@
+{
+  "name": "website-idea-a-user-can-create",
+  "version": "1.0.0",
+  "description": "Static starter website for a secure AWS-hosted media dashboard.",
+  "scripts": {
+    "build": "esbuild assets/js/app.js assets/js/auth.js assets/js/dashboard.js --bundle --format=esm --splitting --outdir=assets/dist --platform=browser"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rashmi99382/clous.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/rashmi99382/clous/issues"
+  },
+  "homepage": "https://github.com/rashmi99382/clous#readme",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.888.0",
+    "aws-amplify": "^6.15.6",
+    "esbuild": "^0.25.9"
+  }
+}

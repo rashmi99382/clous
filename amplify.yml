@@ -1,11 +1,20 @@
 version: 1
 frontend:
   phases:
+    preBuild:
+      commands:
+        - npm ci
     build:
-      commands: []
+      commands:
+        - npm run build
   artifacts:
-    baseDirectory: /
+    baseDirectory: .
     files:
-      - "**/*"
+      - index.html
+      - login.html
+      - signup.html
+      - forgot-password.html
+      - dashboard.html
+      - assets/**/*
   cache:
     paths: []

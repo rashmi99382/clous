@@ -1,10 +1,10 @@
-import { fetchAuthSession, getCurrentUser, signOut } from "https://esm.sh/aws-amplify@6.15.6/auth";
-import { getUrl, uploadData } from "https://esm.sh/aws-amplify@6.15.6/storage";
+import { fetchAuthSession, getCurrentUser, signOut } from "aws-amplify/auth";
+import { getUrl, uploadData } from "aws-amplify/storage";
 import {
   DynamoDBClient,
   PutItemCommand,
   QueryCommand
-} from "https://esm.sh/@aws-sdk/client-dynamodb@3.888.0";
+} from "@aws-sdk/client-dynamodb";
 import { awsConfig, hasAwsConfig } from "./aws.js";
 
 const message = document.getElementById("dashboard-message");

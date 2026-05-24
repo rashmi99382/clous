@@ -1,4 +1,4 @@
-import { Amplify } from "https://esm.sh/aws-amplify@6.15.6";
+import { Amplify } from "aws-amplify";
 import { awsConfig, hasAwsConfig } from "./aws-config.js";
 
 Amplify.configure({

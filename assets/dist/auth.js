@@ -1,14 +1,15 @@
 import {
   confirmResetPassword,
   confirmSignUp,
+  hasAwsConfig,
   resetPassword,
   signIn,
   signUp
-} from "aws-amplify/auth";
-import { hasAwsConfig } from "./aws.js";
+} from "./chunk-LNG3ZXQZ.js";
+import "./chunk-NYHZIGVN.js";
 
-const missingConfigMessage = "Add your Cognito and AWS IDs in assets/js/aws-config.js before using this form.";
-
+// assets/js/auth.js
+var missingConfigMessage = "Add your Cognito and AWS IDs in assets/js/aws-config.js before using this form.";
 function setMessage(id, message, type = "") {
   const element = document.getElementById(id);
   if (!element) {
@@ -17,7 +18,6 @@ function setMessage(id, message, type = "") {
   element.textContent = message;
   element.className = `form-message ${type}`.trim();
 }
-
 function friendlyAuthError(error) {
   const message = error.message ?? "AWS authentication request failed.";
   if (message.includes("configured with secret") || message.includes("SECRET_HASH")) {
@@ -25,7 +25,6 @@ function friendlyAuthError(error) {
   }
   return message;
 }
-
 function requireConfig(messageId) {
   if (hasAwsConfig()) {
     return true;
@@ -33,17 +32,14 @@ function requireConfig(messageId) {
   setMessage(messageId, missingConfigMessage, "error");
   return false;
 }
-
 function value(id) {
   return document.getElementById(id)?.value.trim() ?? "";
 }
-
 document.getElementById("signup-form")?.addEventListener("submit", async (event) => {
   event.preventDefault();
   if (!requireConfig("signup-message")) {
     return;
   }
-
   setMessage("signup-message", "Creating account...");
   try {
     await signUp({
@@ -62,13 +58,11 @@ document.getElementById("signup-form")?.addEventListener("submit", async (event)
     setMessage("signup-message", friendlyAuthError(error), "error");
   }
 });
-
 document.getElementById("verify-form")?.addEventListener("submit", async (event) => {
   event.preventDefault();
   if (!requireConfig("verify-message")) {
     return;
   }
-
   setMessage("verify-message", "Verifying account...");
   try {
     await confirmSignUp({
@@ -80,13 +74,11 @@ document.getElementById("verify-form")?.addEventListener("submit", async (event)
     setMessage("verify-message", friendlyAuthError(error), "error");
   }
 });
-
 document.getElementById("login-form")?.addEventListener("submit", async (event) => {
   event.preventDefault();
   if (!requireConfig("login-message")) {
     return;
   }
-
   setMessage("login-message", "Logging in...");
   try {
     await signIn({
@@ -98,13 +90,11 @@ document.getElementById("login-form")?.addEventListener("submit", async (event) 
     setMessage("login-message", friendlyAuthError(error), "error");
   }
 });
-
 document.getElementById("forgot-form")?.addEventListener("submit", async (event) => {
   event.preventDefault();
   if (!requireConfig("forgot-message")) {
     return;
   }
-
   setMessage("forgot-message", "Sending reset code...");
   try {
     await resetPassword({ username: value("forgot-email") });
@@ -114,13 +104,11 @@ document.getElementById("forgot-form")?.addEventListener("submit", async (event)
     setMessage("forgot-message", friendlyAuthError(error), "error");
   }
 });
-
 document.getElementById("reset-form")?.addEventListener("submit", async (event) => {
   event.preventDefault();
   if (!requireConfig("reset-message")) {
     return;
   }
-
   setMessage("reset-message", "Resetting password...");
   try {
     await confirmResetPassword({
