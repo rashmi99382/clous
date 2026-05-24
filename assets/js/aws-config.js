@@ -1,12 +1,12 @@
 export const awsConfig = {
   region: "us-east-1",
   cognito: {
-    userPoolId: "YOUR_COGNITO_USER_POOL_ID",
-    userPoolClientId: "YOUR_COGNITO_APP_CLIENT_ID",
-    identityPoolId: "YOUR_COGNITO_IDENTITY_POOL_ID"
+    userPoolId: "us-east-1_omZOQ6mUZ",
+    userPoolClientId: "4ib53qp3cgnl05mvdimvhnri3m",
+    identityPoolId: "us-east-1:0046d43b-5761-4edb-abba-ef35be2669b3"
   },
   s3: {
-    bucket: "YOUR_PRIVATE_MEDIA_BUCKET_NAME"
+    bucket: "clous-user-media"
   },
   dynamodb: {
     tableName: "UserMediaUploads"
