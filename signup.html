@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Signup | AWS Media</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script type="module" src="assets/js/auth.js"></script>
+  </head>
+  <body class="auth-page">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Home">
+        <span class="brand-mark">A</span>
+        <span>AWS Media</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="login.html">Login</a>
+      </nav>
+    </header>
+
+    <main class="auth-layout two-column">
+      <section class="auth-card">
+        <p class="eyebrow">New account</p>
+        <h1>Create account</h1>
+        <form id="signup-form" class="stacked-form">
+          <label>
+            Name
+            <input id="signup-name" name="name" type="text" autocomplete="name" required>
+          </label>
+          <label>
+            Email
+            <input id="signup-email" name="email" type="email" autocomplete="email" required>
+          </label>
+          <label>
+            Password
+            <input id="signup-password" name="password" type="password" autocomplete="new-password" minlength="8" required>
+          </label>
+          <button class="button" type="submit">Create account</button>
+          <p id="signup-message" class="form-message" role="status"></p>
+        </form>
+      </section>
+
+      <section class="auth-card">
+        <p class="eyebrow">Email verification</p>
+        <h2>Verify code</h2>
+        <form id="verify-form" class="stacked-form">
+          <label>
+            Email
+            <input id="verify-email" name="email" type="email" autocomplete="email" required>
+          </label>
+          <label>
+            Verification code
+            <input id="verify-code" name="code" type="text" inputmode="numeric" required>
+          </label>
+          <button class="button secondary" type="submit">Verify account</button>
+          <p id="verify-message" class="form-message" role="status"></p>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard | AWS Media</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script type="module" src="assets/js/dashboard.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Home">
+        <span class="brand-mark">A</span>
+        <span>AWS Media</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <span id="user-email" class="session-label"></span>
+        <button id="logout-button" class="button small secondary" type="button">Logout</button>
+      </nav>
+    </header>
+
+    <main class="dashboard-shell">
+      <section class="dashboard-heading">
+        <p class="eyebrow">Private dashboard</p>
+        <h1>Upload profile details, pictures, and videos.</h1>
+      </section>
+
+      <section class="dashboard-grid">
+        <form id="media-form" class="upload-panel">
+          <h2>New upload</h2>
+          <label>
+            Name
+            <input id="display-name" name="name" type="text" autocomplete="name" required>
+          </label>
+          <label>
+            Title
+            <input id="media-title" name="title" type="text" required>
+          </label>
+          <label>
+            Description
+            <textarea id="media-description" name="description" rows="5" required></textarea>
+          </label>
+          <label>
+            Picture
+            <input id="picture-file" name="picture" type="file" accept="image/*" required>
+          </label>
+          <label>
+            Video
+            <input id="video-file" name="video" type="file" accept="video/*" required>
+          </label>
+          <button class="button" type="submit">Save data</button>
+          <p id="dashboard-message" class="form-message" role="status"></p>
+        </form>
+
+        <aside class="preview-panel">
+          <h2>Preview</h2>
+          <div class="preview-media">
+            <img id="image-preview" alt="Selected picture preview">
+            <video id="video-preview" controls></video>
+          </div>
+          <div class="preview-copy">
+            <h3 id="preview-title">Your title will appear here</h3>
+            <p id="preview-description">Your description will appear here.</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="content-section">
+        <div class="section-heading">
+          <p class="eyebrow">Uploaded content</p>
+          <h2>Your saved records</h2>
+        </div>
+        <div id="content-list" class="content-list"></div>
+      </section>
+    </main>
+  </body>
+</html>

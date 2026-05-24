@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simple AWS User Media Website</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script type="module" src="assets/js/app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Home">
+        <span class="brand-mark">A</span>
+        <span>AWS Media</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="login.html">Login</a>
+        <a class="button small" href="signup.html">Create account</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Simple AWS User Media Website</p>
+          <h1>Create accounts, verify email, and upload media securely.</h1>
+          <p class="hero-text">
+            A clean starter project for a small user media platform using Amplify Hosting,
+            Amazon Cognito, Amazon S3, and DynamoDB.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="signup.html">Start with signup</a>
+            <a class="button secondary" href="login.html">Login</a>
+          </div>
+        </div>
+        <div class="hero-panel" aria-label="Architecture preview">
+          <div class="flow-card">
+            <span>User browser</span>
+            <strong>HTML / CSS / JavaScript</strong>
+          </div>
+          <div class="flow-arrow"></div>
+          <div class="service-grid">
+            <div>
+              <span>Auth</span>
+              <strong>Cognito</strong>
+            </div>
+            <div>
+              <span>Files</span>
+              <strong>S3</strong>
+            </div>
+            <div>
+              <span>Records</span>
+              <strong>DynamoDB</strong>
+            </div>
+            <div>
+              <span>Hosting</span>
+              <strong>Amplify</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-band">
+        <div class="section-heading">
+          <p class="eyebrow">What users can do</p>
+          <h2>Account, upload, dashboard.</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3>Create account</h3>
+            <p>Users sign up with name, email, and password. Cognito sends the verification code.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Reset password</h3>
+            <p>Cognito handles forgot password emails and reset codes, so passwords never go into DynamoDB.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Upload media</h3>
+            <p>Images and videos upload to a private user folder in S3 after login.</p>
+          </article>
+          <article class="feature-card">
+            <h3>View dashboard</h3>
+            <p>DynamoDB stores names, titles, descriptions, file paths, and upload dates.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
