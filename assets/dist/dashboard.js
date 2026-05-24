@@ -8325,6 +8325,16 @@ function setMessage(text, type = "") {
   message.textContent = text;
   message.className = `form-message ${type}`.trim();
 }
+function friendlyAwsError(error) {
+  const text = error.message ?? "AWS request failed.";
+  if (text.includes("not authorized") || text.includes("AccessDenied") || text.includes("AccessDeniedException")) {
+    return "AWS permission problem: check the authenticated Cognito role permissions for S3 and DynamoDB.";
+  }
+  if (text.includes("Requested resource not found") || text.includes("ResourceNotFoundException")) {
+    return "DynamoDB table not found. Check that UserMediaUploads exists in us-east-1 with userId and createdAt keys.";
+  }
+  return text;
+}
 function value(id) {
   return document.getElementById(id)?.value.trim() ?? "";
 }
@@ -8374,6 +8384,9 @@ async function signedUrl(path) {
 }
 async function saveRecord(record) {
   const session = await fetchAuthSession();
+  if (!session.credentials) {
+    throw new Error("Cognito did not return AWS credentials. Check the Identity Pool provider and authenticated role.");
+  }
   const client = createDynamoClient(session.credentials);
   await client.send(new PutItemCommand({
     TableName: awsConfig.dynamodb.tableName,
@@ -8393,6 +8406,9 @@ async function loadRecords() {
     return;
   }
   const session = await fetchAuthSession();
+  if (!session.credentials) {
+    throw new Error("Cognito did not return AWS credentials. Check the Identity Pool provider and authenticated role.");
+  }
   const client = createDynamoClient(session.credentials);
   const result = await client.send(new QueryCommand({
     TableName: awsConfig.dynamodb.tableName,
@@ -8427,12 +8443,18 @@ async function protectDashboard() {
   }
   try {
     currentUser = await getCurrentUser();
-    const session = await fetchAuthSession();
-    currentIdentityId = session.identityId;
-    document.getElementById("user-email").textContent = currentUser.signInDetails?.loginId ?? currentUser.username;
-    await loadRecords();
   } catch {
     window.location.href = "login.html";
+    return;
+  }
+  document.getElementById("user-email").textContent = currentUser.signInDetails?.loginId ?? currentUser.username;
+  try {
+    const session = await fetchAuthSession();
+    currentIdentityId = session.identityId;
+    await loadRecords();
+  } catch (error) {
+    setMessage(friendlyAwsError(error), "error");
+    list.innerHTML = '<p class="form-message">Dashboard opened, but saved records could not load yet.</p>';
   }
 }
 document.getElementById("logout-button")?.addEventListener("click", async () => {
@@ -8468,7 +8490,7 @@ document.getElementById("media-form")?.addEventListener("submit", async (event) 
     setMessage("Saved to S3 and DynamoDB.", "success");
     await loadRecords();
   } catch (error) {
-    setMessage(error.message ?? "Upload failed.", "error");
+    setMessage(friendlyAwsError(error), "error");
   }
 });
 setObjectPreview("picture-file", "image-preview");
