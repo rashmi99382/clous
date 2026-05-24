@@ -1,7 +1,7 @@
 import {
   getCurrentUser,
   hasAwsConfig
-} from "./chunk-LNG3ZXQZ.js";
+} from "./chunk-SSBODX2K.js";
 import "./chunk-NYHZIGVN.js";
 
 // assets/js/app.js

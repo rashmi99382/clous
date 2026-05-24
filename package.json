@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Static starter website for a secure AWS-hosted media dashboard.",
   "scripts": {
-    "build": "esbuild assets/js/app.js assets/js/auth.js assets/js/dashboard.js --bundle --format=esm --splitting --outdir=assets/dist --platform=browser"
+    "build": "rm -rf assets/dist && esbuild assets/js/app.js assets/js/auth.js assets/js/dashboard.js --bundle --format=esm --splitting --outdir=assets/dist --platform=browser"
   },
   "repository": {
     "type": "git",

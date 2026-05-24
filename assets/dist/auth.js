@@ -5,7 +5,7 @@ import {
   resetPassword,
   signIn,
   signUp
-} from "./chunk-LNG3ZXQZ.js";
+} from "./chunk-SSBODX2K.js";
 import "./chunk-NYHZIGVN.js";
 
 // assets/js/auth.js

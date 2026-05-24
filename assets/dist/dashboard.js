@@ -31,7 +31,7 @@ import {
   signingMiddlewareFactory,
   userAgentMiddlewareFactory,
   withMemoization
-} from "./chunk-LNG3ZXQZ.js";
+} from "./chunk-SSBODX2K.js";
 import {
   Client,
   Command,
