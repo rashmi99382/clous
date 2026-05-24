@@ -1,6 +1,7 @@
 import {
   confirmResetPassword,
   confirmSignUp,
+  getCurrentUser,
   hasAwsConfig,
   resetPassword,
   signIn,
@@ -22,6 +23,9 @@ function friendlyAuthError(error) {
   const message = error.message ?? "AWS authentication request failed.";
   if (message.includes("configured with secret") || message.includes("SECRET_HASH")) {
     return "Your Cognito app client has a client secret enabled. Create a new app client without a client secret, then update assets/js/aws-config.js.";
+  }
+  if (message.includes("already a signed in user")) {
+    return "You are already logged in. Opening your dashboard...";
   }
   return message;
 }
@@ -81,12 +85,23 @@ document.getElementById("login-form")?.addEventListener("submit", async (event) 
   }
   setMessage("login-message", "Logging in...");
   try {
+    try {
+      await getCurrentUser();
+      window.location.href = "dashboard.html";
+      return;
+    } catch {
+    }
     await signIn({
       username: value("login-email"),
       password: value("login-password")
     });
     window.location.href = "dashboard.html";
   } catch (error) {
+    if ((error.message ?? "").includes("already a signed in user")) {
+      setMessage("login-message", friendlyAuthError(error), "success");
+      window.location.href = "dashboard.html";
+      return;
+    }
     setMessage("login-message", friendlyAuthError(error), "error");
   }
 });
